@@ -1,5 +1,7 @@
 ::Time.class_eval do
   def to_formatted_s(format = :default)
+    return self.rfc822 if :rfc822 == format # don't localize rfc822
+
     formats = ::Time::DATE_FORMATS
     formatter = formats[format]
 

@@ -1,6 +1,8 @@
 ActiveSupport::TimeWithZone.class_eval do
   def to_s(format = :default)
     return utc.to_s(format) if format == :db
+    return localtime.rfc822 if :rfc822 == format
+
     formats = ::Time::DATE_FORMATS
     formatter = formats[format]
 
